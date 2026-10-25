@@ -9,10 +9,6 @@ options), with one big difference: the stock dialog works with touch only, `mzd-
 
 ![three buttons](docs/three-buttons.png)
 
-_(The pictures in this documentation are rendered on a PC with the DejaVu font. On the CMU the font is Tipperary, a little narrower.)_
-
-- The window is 680 x 354 pixels, in the middle of the 800 x 480 screen, like the stock dialog.
-- One font (Tipperary) in all sizes: the title is large, the text and the buttons are smaller. No bold text, no letter spacing, and a text that does not fit is cut with `...` (never squeezed).
 - The focused button is red; a button held by a finger is brighter.
 - While the window is open the knob is grabbed, so the CMU behind it does not react. When the program ends, the knob works again.
 
@@ -68,7 +64,6 @@ All parameters are optional and are written as `--name=value`.
 | `--back-code=N` | the last button | the button that Back / Home / Esc choose (0 = the first) |
 | `--timeout=SEC` | none | close the window after SEC seconds without an answer (exit code 254) |
 | `--max-seconds=SEC` | `900` | a hard limit that always applies, so the knob can never stay grabbed. Keep it larger than `--timeout` |
-| `--rot-step=N` | `1` | how many knob "clicks" move the focus by one button |
 | `--no-grab` | off | do not grab the knob (the CMU behind the window reacts too) |
 
 **Other / for developers:**
@@ -131,23 +126,18 @@ wait with a time limit and use the stock `jci-dialog` when `mzd-dlg` is not avai
 
 
 
-# mzd-listmenu - a scrollable list menu for the Mazda CMU
+# mzd-listmenu - a scrollable list menu for the CMU
 
 `mzd-listmenu` shows a window with a **title**, a **list of items** and a row of **buttons** under the list, waits for the user and
 tells the calling `sh` script **what was chosen**. It is made for menus with many entries (for example the scenarios of a USB drive).
 
 ![a list with a scroll bar](docs/list-top.png)
 
-_(The pictures in this documentation are rendered on a PC with the DejaVu font. On the CMU the font is Tipperary, a little narrower.)_
-
 - **The program never runs anything.** It only prints what the item means (its *value*) and ends. What to do with it is decided by
   the `sh` script.
 - The list shows **5 rows** at a time. If there are more items, the list scrolls and a **red scroll bar** appears at its right.
   The **buttons stay in place** whatever the scrolling.
-- The look is that of the lists of the CMU itself: a thin line under every row, the focused row has a red glow.
 - An item can be **disabled**: it is shown in grey like in the CMU lists, never gets the focus and cannot be chosen.
-- The window is 768 x 448 pixels with a 16 pixel margin (the status bar of the CMU stays visible). While it is open the knob is
-  grabbed, so the CMU behind it does not react. When the program ends, the knob works again.
 - Only Latin letters (the font of the CMU). Up to 1000 items. A name that is too long is cut with `...`.
 
 ## How it is controlled
@@ -210,7 +200,6 @@ All parameters are optional and are written as `--name=value`.
 | --- | --- | --- |
 | `--timeout=SEC` | none | close the window after SEC seconds without an answer (exit code 254) |
 | `--max-seconds=SEC` | `900` | a hard limit that always applies, so the knob can never stay grabbed. Keep it larger than `--timeout` |
-| `--rot-step=N` | `1` | how many knob "clicks" move the focus by one step |
 | `--no-grab` | off | do not grab the knob (the CMU behind the window reacts too) |
 
 **Other / for developers:**
