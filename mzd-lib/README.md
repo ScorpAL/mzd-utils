@@ -1,4 +1,4 @@
-# mzd-lib - building blocks for USB scenarios on the Mazda CMU
+# mzd-lib - building blocks for USB scenarios on the CMU
 
 A scenario is a small shell script on the USB drive. It sources this library and calls ready-made steps: windows
 (`mzd-dlg`) and the Terminal with a working USB keyboard (`mzd-kbd-bridge`), without any plumbing of its own.
@@ -13,8 +13,7 @@ mzd_info "Done" "The Terminal is closed, the knob works." 6
 mzd_bye                                    # "You can remove the USB drive", closes by itself after 15 s
 ```
 
-Layout of the USB drive: in the root only the entry script (and `mzd-debug.flag`), and the folders `mzd-lib/` (this), `mzd-bin/` (the ARM programs), `scenarios/` (the other scripts: menus, scenarios) and `logs/` (created). A script in `scenarios/` sources `../mzd-lib/mzd.sh`; the library finds the root by itself. See
-`../make-usb.sh`. A **menu** and **scenarios** are plain scripts: `scenarios/recon-terminal-10.sh` (the entry script) shows a scrollable list
+Layout of the USB drive: in the root only the entry script (and `mzd-debug.flag`), and the folders `mzd-lib/` (this), `mzd-bin/` (the ARM programs), `scenarios/` (the other scripts: menus, scenarios) and `logs/` (created). A script in `scenarios/` sources `../mzd-lib/mzd.sh`; the library finds the root by itself. A **menu** and **scenarios** are plain scripts: `scenarios/run-poc.sh` (the entry script) shows a scrollable list
 (`mzd_menu`) and starts the chosen scenario (`scenario-1.sh`, `scenario-2.sh`, `demo.sh N`) with `sh`; the menu comes back on
 the same item when the scenario ends. The scenarios work alone, too. A list item is `NAME<TAB>script and arguments`; the menu
 runs nothing itself - the script decides what to do with `MZD_MENU_VALUE` (here `sh ${MZD_MENU_VALUE}` in the folder of the scripts).
